@@ -18,5 +18,6 @@ module Quintype
     autoload :Config,           "quintype/api/config"
     autoload :Section,          "quintype/api/section"
     autoload :MenuItem,         "quintype/api/menu_item"
+    autoload :Story,            "quintype/api/story"
   end
 end

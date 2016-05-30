@@ -31,9 +31,13 @@ module Quintype::API
       get("/api/v1/config")
     end
 
+    def get_story_by_slug(slug)
+      get("/api/v1/stories-by-slug", slug: slug)
+    end
+
     private
-    def get(url)
-      parse_response @conn.get(url)
+    def get(url, params)
+      parse_response @conn.get(url, params)
     end
 
     def parse_response(response)

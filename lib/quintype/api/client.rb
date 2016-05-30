@@ -50,10 +50,13 @@ module Quintype::API
     end
 
     def parse_response(response)
-      if(response.status < 400)
-        response
-      else
+      case response.status
+      when 404
+        nil
+      when (400..600)
         raise ClientException.new("API returned a non successful response", response)
+      else
+        response
       end
     end
   end

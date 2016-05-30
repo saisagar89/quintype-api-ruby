@@ -23,7 +23,8 @@ module Quintype::API
 
     class << self
       def find_by_slug(slug)
-        from_hash(Client.instance.get_story_by_slug(slug).body["story"])
+        response = Client.instance.get_story_by_slug(slug)
+        from_hash(response.body["story"]) if response
       end
 
       def bulk_stories_request(story_group)

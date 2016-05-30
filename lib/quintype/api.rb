@@ -2,7 +2,6 @@ require "quintype/api/version"
 
 require "faraday"
 require "faraday_middleware"
-require "hashie"
 
 module Quintype
   module API

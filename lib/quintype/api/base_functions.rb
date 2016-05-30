@@ -5,8 +5,8 @@ module Quintype::API
         @members_as_string ||= members.map {|i| i.to_s.gsub(/_/, "-")}
       end
 
-      def from_hash(hash)
-        new(*hash.values_at(*members_as_string))
+      def from_hash(hash, *args)
+        new *(args + hash.values_at(*members_as_string))
       end
 
       def coerce_array(key, clazz)

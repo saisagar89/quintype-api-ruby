@@ -11,5 +11,9 @@ module Quintype::API
     def menu_items
       layout["menu"].map { |i| MenuItem.from_hash(i, self) }
     end
+
+    def stacks
+      StackCollection.new layout["stacks"].map { |i| Stack.from_hash(i) }
+    end
   end
 end

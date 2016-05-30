@@ -36,7 +36,7 @@ module Quintype::API
     end
 
     private
-    def get(url, params)
+    def get(url, params = {})
       parse_response @conn.get(url, params)
     end
 

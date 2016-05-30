@@ -22,7 +22,49 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Establishing Connection
+
+First, you must establish a connection, as follows
+
+```ruby
+Quintype::API::Client.establish_connection("http://sketches.quintype.com", Faraday.default_adapter)
+```
+
+### Subclassing API classes
+
+It is highly recommended that you subclass API sections. This is mostly honored during requests
+
+```ruby
+class QtConfig < Quintype::API::Config
+end
+
+class Story < Quintype::API::Story
+end
+```
+
+### Fetching the Config
+
+```ruby
+QtConfig.get.sections
+```
+
+### Fetching a story by slug
+
+```ruby
+Story.find_by_slug("5-timeless-truths-from-the-serenity-prayer-that-offer-wisdom")
+```
+
+### Bulk Fetching stories
+
+```ruby
+request = Quintype::API::Bulk.new
+request
+  .add_request("entertainment", Story.bulk_stories_request("top").add_params(section: "Entertainment"))
+  .add_request("sports", Story.bulk_stories_request("top").add_params(section: "Sports"))
+  .execute!
+entertainment_stories = request.get_response("entertainment")
+sports_stories = request.get_response("sports")
+```
 
 ## Development
 
@@ -32,5 +74,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/quintype-api.
+Bug reports and pull requests are welcome on GitHub at https://github.com/quintype/quintype-api-ruby.
 

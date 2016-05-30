@@ -20,5 +20,6 @@ module Quintype
     autoload :Stack,            "quintype/api/stack"
     autoload :StackCollection,  "quintype/api/stack_collection"
     autoload :Story,            "quintype/api/story"
+    autoload :Bulk,             "quintype/api/bulk"
   end
 end

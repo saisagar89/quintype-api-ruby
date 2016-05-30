@@ -12,6 +12,7 @@ module Quintype::API
     class << self
       def establish_connection(host, adapter = nil)
         connection = Faraday.new(host) do |conn|
+          conn.request  :json
           conn.response :json, :content_type => /\bjson$/
           conn.adapter(adapter || Faraday.default_adapter)
         end
@@ -35,9 +36,17 @@ module Quintype::API
       get("/api/v1/stories-by-slug", slug: slug)
     end
 
+    def post_bulk(requests)
+      post("/api/v1/bulk", requests)
+    end
+
     private
     def get(url, params = {})
       parse_response @conn.get(url, params)
+    end
+
+    def post(url, body, params = {})
+      parse_response @conn.post(url, body, params)
     end
 
     def parse_response(response)

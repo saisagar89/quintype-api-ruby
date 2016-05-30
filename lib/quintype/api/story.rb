@@ -24,7 +24,7 @@ module Quintype::API
     class << self
       def find_by_slug(slug)
         response = Client.instance.get_story_by_slug(slug)
-        from_hash(response.body["story"]) if response
+        from_hash(response) if response
       end
 
       def bulk_stories_request(story_group)

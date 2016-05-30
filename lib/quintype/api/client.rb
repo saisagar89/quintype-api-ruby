@@ -29,35 +29,31 @@ module Quintype::API
     end
 
     def get_config
-      get("/api/v1/config")
+      response = get("/api/v1/config")
+      raise ClientException.new("Could not get config", response) unless response.status == 200
+      response.body
     end
 
     def get_story_by_slug(slug)
-      get("/api/v1/stories-by-slug", slug: slug)
+      response = get("/api/v1/stories-by-slug", slug: slug)
+      return nil if response.status == 404
+      raise ClientException.new("Could not fetch story", response) unless response.status == 200
+      response.body["story"]
     end
 
     def post_bulk(requests)
-      post("/api/v1/bulk", requests)
+      response = post("/api/v1/bulk", requests: requests)
+      raise ClientException.new("Could not bulk fetch", response) unless response.status == 200
+      response.body["results"]
     end
 
     private
     def get(url, params = {})
-      parse_response @conn.get(url, params)
+      @conn.get(url, params)
     end
 
     def post(url, body, params = {})
-      parse_response @conn.post(url, body, params)
-    end
-
-    def parse_response(response)
-      case response.status
-      when 404
-        nil
-      when (400..600)
-        raise ClientException.new("API returned a non successful response", response)
-      else
-        response
-      end
+      @conn.post(url, body, params)
     end
   end
 end

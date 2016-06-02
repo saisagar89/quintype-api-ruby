@@ -42,7 +42,7 @@ module Quintype::API
     end
 
     def post_bulk(requests)
-      response = post("/api/v1/bulk", requests: requests)
+      response = post("/api/bulk", requests: requests)
       raise ClientException.new("Could not bulk fetch", response) unless response.status == 200
       response.body["results"]
     end

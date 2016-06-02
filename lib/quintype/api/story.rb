@@ -15,7 +15,7 @@ module Quintype::API
     end
 
     def from_bulk_response(response)
-      response["stories"].map {|i| @klazz.from_hash(i) }
+      response.map {|i| @klazz.from_hash(i) }
     end
   end
 

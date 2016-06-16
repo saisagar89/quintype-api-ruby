@@ -54,6 +54,19 @@ QtConfig.get.sections
 Story.find_by_slug("5-timeless-truths-from-the-serenity-prayer-that-offer-wisdom")
 ```
 
+### Fetching an group of story
+```ruby
+stories = Story.fetch('top', section: "Politics")
+```
+
+### Searching for stories
+
+```ruby
+stories = Story.search(q: "Peter")
+stories.map {|i| i.headline }
+p stories.total
+```
+
 ### Bulk Fetching stories
 
 ```ruby
@@ -75,4 +88,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/quintype/quintype-api-ruby.
-

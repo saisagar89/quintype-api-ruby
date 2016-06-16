@@ -10,12 +10,44 @@ module Quintype::API
       self
     end
 
+    def execute!
+      from_response(Client.instance.get_stories(@params))
+    end
+
+    def from_response(stories)
+      stories.map {|i| @klazz.from_hash(i) }
+    end
+
     def to_bulk_request
       @params.merge(_type: "stories")
     end
 
     def from_bulk_response(response)
-      response["stories"].map {|i| @klazz.from_hash(i) }
+      from_response(response["stories"])
+    end
+  end
+
+  class SearchResults < Base(:from, :size, :total, :stories)
+    include Enumerable
+
+    def each
+      stories.each { |i| yield i }
+    end
+  end
+
+  class SearchRequest
+    def initialize(klazz, params)
+      @klazz = klazz
+      @params = params
+    end
+
+    def execute!
+      from_response(Client.instance.get_search(@params))
+    end
+
+    def from_response(response)
+      mapped_stories = response["stories"].map { |i| @klazz.from_hash(i) }
+      SearchResults.from_hash(response.merge("stories" => mapped_stories))
     end
   end
 
@@ -29,6 +61,14 @@ module Quintype::API
 
       def bulk_stories_request(story_group)
         StoriesRequest.new(self, story_group)
+      end
+
+      def fetch(story_group, options = {})
+        StoriesRequest.new(self, story_group).add_params(options).execute!
+      end
+
+      def search(options)
+        SearchRequest.new(self, options).execute!
       end
     end
   end

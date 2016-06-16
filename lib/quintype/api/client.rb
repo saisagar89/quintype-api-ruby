@@ -41,6 +41,18 @@ module Quintype::API
       response.body["story"]
     end
 
+    def get_stories(params)
+      response = get("/api/v1/stories", params)
+      raise ClientException.new("Could not get stories", response) unless response.status == 200
+      response.body["stories"]
+    end
+
+    def get_search(params)
+      response = get("/api/v1/search", params)
+      raise ClientException.new("Could not search stories", response) unless response.status == 200
+      response.body["results"]
+    end
+
     def post_bulk(requests)
       response = post("/api/v1/bulk", requests: requests)
       raise ClientException.new("Could not bulk fetch", response) unless response.status == 200

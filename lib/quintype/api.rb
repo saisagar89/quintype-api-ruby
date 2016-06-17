@@ -8,8 +8,8 @@ module Quintype
     autoload :Client,           "quintype/api/client"
     autoload :BaseFunctions,    "quintype/api/base_functions"
 
-    def self.Base(*args)
-      clazz = Struct.new(*args)
+    def self.Base(args)
+      clazz = Struct.new(*args.map(&:intern))
       clazz.send(:include, BaseFunctions)
       clazz
     end

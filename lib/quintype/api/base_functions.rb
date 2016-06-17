@@ -2,7 +2,7 @@ module Quintype::API
   module BaseFunctions
     module ClassFunctions
       def members_as_string
-        @members_as_string ||= members.map {|i| i.to_s.gsub(/_/, "-")}
+        @members_as_string ||= members.map(&:to_s)
       end
 
       def from_hash(hash, *args)
@@ -28,6 +28,10 @@ module Quintype::API
 
     def self.included(clazz)
       clazz.extend(ClassFunctions)
+      clazz.members_as_string.each do |hypenated_key|
+        underscore_key = hypenated_key.gsub(/-/, '_')
+        clazz.send(:alias_method, underscore_key, hypenated_key) if underscore_key != hypenated_key
+      end
     end
   end
 end

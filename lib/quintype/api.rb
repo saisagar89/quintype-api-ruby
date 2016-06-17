@@ -18,8 +18,10 @@ module Quintype
     autoload :Section,          "quintype/api/section"
     autoload :MenuItem,         "quintype/api/menu_item"
     autoload :Stack,            "quintype/api/stack"
-    autoload :StackCollection,  "quintype/api/stack_collection"
     autoload :Story,            "quintype/api/story"
+
+    autoload :StackCollection,  "quintype/api/stack_collection"
+
     autoload :Bulk,             "quintype/api/bulk"
   end
 end

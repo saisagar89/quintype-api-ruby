@@ -1,5 +1,5 @@
 module Quintype::API
-  class MenuItem < Base(:id, :item_id, :rank, :title, :item_type, :tag_name, :section_slug, :parent_id, :data)
+  class MenuItem < Base(:id, :"item-id", :rank, :title, :"item-type", :"tag-name", :"section-slug", :"parent-id", :data)
 
     def initialize(config, *args)
       @config = config

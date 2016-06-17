@@ -51,7 +51,7 @@ module Quintype::API
     end
   end
 
-  class Story < Base(:updated_at, :assignee_id, :author_name, :tags, :headline, :storyline_id, :votes, :story_content_id, :slug, :last_published_at, :sections, :content_created_at, :owner_name, :custom_slug, :push_notification, :publisher_id, :hero_image_metadata, :comments, :published_at, :storyline_title, :summary, :autotags, :status, :bullet_type, :id, :hero_image_s3_key, :cards, :story_version_id, :content_updated_at, :author_id, :owner_id, :first_published_at, :hero_image_caption, :version, :story_template, :created_at, :authors, :metadata, :publish_at, :assignee_name)
+  class Story < Base(:"updated-at", :"assignee-id", :"author-name", :tags, :headline, :"storyline-id", :votes, :"story-content-id", :slug, :"last-published-at", :sections, :"content-created-at", :"owner-name", :"custom-slug", :"push-notification", :"publisher-id", :"hero-image-metadata", :comments, :"published-at", :"storyline-title", :summary, :autotags, :status, :"bullet-type", :id, :"hero-image-s3-key", :cards, :"story-version-id", :"content-updated-at", :"author-id", :"owner-id", :"first-published-at", :"hero-image-caption", :version, :"story-template", :"created-at", :authors, :metadata, :"publish-at", :"assignee-name")
 
     class << self
       def find_by_slug(slug)

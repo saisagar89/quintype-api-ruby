@@ -1,4 +1,4 @@
 module Quintype::API
-  class Stack < Base(:show_on_locations, :background_color, :rank, :story_group, :max_stories, :id, :show_on_all_sections?, :heading)
+  class Stack < Base(:"show-on-locations", :"background-color", :rank, :"story-group", :"max-stories", :id, :"show-on-all-sections?", :heading)
   end
 end

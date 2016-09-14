@@ -51,7 +51,7 @@ module Quintype::API
     end
   end
 
-  class Story < Base(%w(updated-at assignee-id author-name tags headline storyline-id votes story-content-id slug last-published-at sections content-created-at owner-name custom-slug push-notification publisher-id hero-image-metadata comments published-at storyline-title summary autotags status bullet-type id hero-image-s3-key cards story-version-id content-updated-at author-id owner-id first-published-at hero-image-caption version story-template created-at authors metadata publish-at assignee-name))
+  class Story < Base(%w(updated-at assignee-id author-name tags headline storyline-id votes story-content-id slug last-published-at sections content-created-at owner-name custom-slug push-notification publisher-id hero-image-metadata comments published-at storyline-title summary autotags status bullet-type id hero-image-s3-key cards story-version-id content-updated-at author-id owner-id first-published-at hero-image-caption version story-template created-at authors metadata publish-at assignee-name access))
     class << self
       def find_by_slug(slug)
         response = Client.instance.get_story_by_slug(slug)

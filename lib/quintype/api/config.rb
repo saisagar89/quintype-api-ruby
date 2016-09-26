@@ -1,5 +1,5 @@
 module Quintype::API
-  class Config < Base(%w(sketches-host sections layout cdn-name publisher-id story-slug-format cdn-image social-links seo-metadata))
+  class Config < Base(%w(sketches-host sections layout cdn-name publisher-id story-slug-format cdn-image social-links seo-metadata publisher-name))
     class << self
       def get
         from_hash(Client.instance.get_config)
